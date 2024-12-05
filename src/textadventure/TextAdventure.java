@@ -86,6 +86,8 @@ public class TextAdventure {
                     System.out.println("You successfully escaped your opponent.");
                 } else {
                     System.out.println("You were unable to escape the monster.");
+                    monster.attack(player);
+                    playerHealthUpdate(player);
                 }
                 break;
             default:
@@ -104,7 +106,7 @@ public class TextAdventure {
         System.out.println("The " + monster.getName() + " has " + monster.getHealth() + " HP remaining.");
     }
     public static void playerHealthUpdate(Player player){
-        System.out.println("The " + player.getName() + " has " + player.getHealth() + " HP remaining.");
+        System.out.println(player.getName() + " has " + player.getHealth() + " HP remaining.");
     }
 
     
