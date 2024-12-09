@@ -46,7 +46,22 @@ public class TextAdventure {
         System.out.println("The cave branches ahead, neither tunnel is particularly different from the other. Which way should " + name + " go?");
         System.out.println("1) Left");
         System.out.println("2) Right");
-            
+        
+        String a2 = input.nextLine();
+        // Validate input
+        while (!a2.equals("1") && !a2.equals("2")) {
+           System.out.println("Invalid input, please choose a valid option (1 or 2).");
+           a2 = input.nextLine();
+        }
+        
+        switch (a2){
+            case "1"://goblin fight
+                System.out.println("A Goblin ambushes you!");
+                Goblin goblin = new Goblin("Goblin"); //initialize goblin
+                combat(player, goblin); //call combat for player vs Goblin
+                player.displayStats();
+                break;
+        }
         
             
     }
@@ -80,36 +95,49 @@ public class TextAdventure {
     Scanner input = new Scanner(System.in);
     boolean ran = false; //initialize the run option
 
-    while (monster.isAlive() && !ran) { //keeps combat going as long as the monster is alive
-        System.out.println("1) Attack");
-        System.out.println("2) Inventory");
-        System.out.println("3) Run");
-        String b1 = input.nextLine();
+    while (monster.isAlive() && !ran) { // Keeps combat going as long as the monster is alive
+    System.out.println("1) Attack");
+    System.out.println("2) Inventory");
+    System.out.println("3) Run");
 
-        switch (b1) {
-            case "1":
-                combatTurn(player, monster);
-                if (!monster.isAlive()) {
-                    System.out.println("You have killed the " + monster.getName() + " and gained " + monster.getExperience() + "experience.");
-                    player.gainExperience(monster.getExperience());
-                }
-                break;
-            case "2":
-                System.out.println("Inventory");
-                break;
-            case "3":
-                if (player.getSpeed() > monster.getSpeed()) {
-                    ran = true;
-                    System.out.println("You successfully escaped your opponent.");
-                } else {
-                    System.out.println("You were unable to escape the monster.");
-                    monster.attack(player);
-                    playerHealthUpdate(player);
-                }
-                break;
-            default:
-                System.out.println("Invalid input, please choose a valid option.");
-        }
+    String b1 = input.nextLine();
+
+    // Validate input
+    while (!b1.equals("1") && !b1.equals("2") && !b1.equals("3")) {
+        System.out.println("Invalid input, please choose a valid option (1, 2, or 3).");
+        b1 = input.nextLine();
+    }
+
+    // Process valid input
+    switch (b1) {
+        case "1": // Attack
+            combatTurn(player, monster);
+            if (!monster.isAlive()) {
+                System.out.println("You have killed the " + monster.getName() + " and gained " + monster.getExperience() + " experience.");
+                player.gainExperience(monster.getExperience());
+            }
+            break;
+
+        case "2": // Inventory
+            System.out.println("Inventory");
+            // Implement inventory handling here
+            break;
+
+        case "3": // Run
+            if (player.getSpeed() > monster.getSpeed()) {
+                ran = true;
+                System.out.println("You successfully escaped your opponent.");
+            } else {
+                System.out.println("You were unable to escape the monster.");
+                monster.attack(player);
+                playerHealthUpdate(player); // Update player health
+            }
+            break;
+
+        default: // This should never occur due to input validation
+            System.out.println("Unexpected error occurred.");
+    }
+
 
         // Check if the player has died after the combat turn
         if (player.getHealth() <= 0) {
@@ -118,6 +146,10 @@ public class TextAdventure {
         }
     }
     System.out.println("Combat is over.");
+    if (player.getExperience() > 10){
+        System.out.println(player.getName() + " has leveled up!");
+        player.levelUp();
+    }
 }
     public static void monsterHealthUpdate(Monster monster){
         System.out.println("The " + monster.getName() + " has " + monster.getHealth() + " HP remaining.");

@@ -29,15 +29,24 @@ public class Player {
         this.attack += increaseAmount;
     }
     
-    public void gainExperience(int exp){
+    private int experienceThreshold = ; // Experience needed to level up
+
+    public void gainExperience(int exp) {
         this.experience += exp;
+
+     while (this.experience >= experienceThreshold) {
+           this.experience -= experienceThreshold; // Carry over excess experience
+         levelUp();
+     }
     }
-    
-    public void levelUp(){
-        level++;
-        attack += 2;
-        health = maxHealth + 10;
-    }
+
+public void levelUp() {
+    level++;
+    attack += 2;
+    maxHealth += 10; // Increase max health when leveling up
+    health = maxHealth; // Restore health to the new max health
+    System.out.println("Congratulations! You leveled up to Level " + level + "!");
+}
     
     public void displayStats() {
         System.out.println("Player: " + playerName);
@@ -103,5 +112,11 @@ public class Player {
     }
     public int getHealth(){
         return health;
+    }
+    public int getExperience(){
+        return experience;
+    }
+    public int getLevel(){
+        return level;
     }
 }
