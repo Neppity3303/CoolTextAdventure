@@ -146,11 +146,9 @@ public class TextAdventure {
         }
     }
     System.out.println("Combat is over.");
-    if (player.getExperience() > 10){
-        System.out.println(player.getName() + " has leveled up!");
-        player.levelUp();
+    
     }
-}
+
     public static void monsterHealthUpdate(Monster monster){
         System.out.println("The " + monster.getName() + " has " + monster.getHealth() + " HP remaining.");
     }

@@ -3,6 +3,7 @@ package textadventure;
 import java.util.Random;
 
 public class Player {
+
     private String playerName;
     private int health;
     private int maxHealth;
@@ -12,7 +13,7 @@ public class Player {
     private int speed;
     private int level;
     private int experience;
-    
+
     public Player(String name) {
         playerName = name;  // Set the player's name
         health = 20;        // Set initial health
@@ -24,30 +25,37 @@ public class Player {
         level = 1;          // Set initial level
         experience = 0;     // Set initial experience
     }
-    
-    public void increaseAttack(int increaseAmount){
+
+    public void increaseAttack(int increaseAmount) {
         this.attack += increaseAmount;
     }
-    
-    private int experienceThreshold = ; // Experience needed to level up
+
+    private int experienceThreshold = 10; // Initial experience needed to level up
 
     public void gainExperience(int exp) {
         this.experience += exp;
 
-     while (this.experience >= experienceThreshold) {
-           this.experience -= experienceThreshold; // Carry over excess experience
-         levelUp();
-     }
+        // Check for leveling up
+        while (this.experience >= experienceThreshold) {
+            this.experience -= experienceThreshold; // Carry over excess experience
+            levelUp();
+            // Adjust the threshold dynamically after each level-up
+            experienceThreshold = calculateExperienceThreshold();
+        }
     }
 
-public void levelUp() {
-    level++;
-    attack += 2;
-    maxHealth += 10; // Increase max health when leveling up
-    health = maxHealth; // Restore health to the new max health
-    System.out.println("Congratulations! You leveled up to Level " + level + "!");
-}
-    
+    public void levelUp() {
+        level++;
+        attack += 2;
+        maxHealth += 10; // Increase max health when leveling up
+        health = maxHealth; // Restore health to the new max health
+        System.out.println("Congratulations! You leveled up to Level " + level + "!");
+    }
+
+    private int calculateExperienceThreshold() { //calculate the experience needed to level up
+        return 10 * level; // Adjust as needed for game balance
+    }
+
     public void displayStats() {
         System.out.println("Player: " + playerName);
         System.out.println("Health: " + health + "/" + maxHealth);
@@ -57,14 +65,14 @@ public void levelUp() {
         System.out.println("Level: " + level);
         System.out.println("Experience: " + experience);
     }
-    
-    public void takeDamage(int damage){
+
+    public void takeDamage(int damage) {
         this.health -= damage;
-        if (this.health < 0){
+        if (this.health < 0) {
             this.health = 0;
         }
     }
-    
+
     public void attack(Monster monster) {
         Random crit = new Random();
         int damage;
@@ -89,34 +97,40 @@ public void levelUp() {
             }
         }
     }
-    
-    public boolean isAlive(){
-        if (this.health > 0){
+
+    public boolean isAlive() {
+        if (this.health > 0) {
             return true;
         } else {
             return false;
         }
     }
-    
-    public int getDefense(){
+
+    public int getDefense() {
         return defense;
     }
-    public int getAttack(){
+
+    public int getAttack() {
         return attack;
     }
-    public String getName(){
+
+    public String getName() {
         return playerName;
     }
-    public int getSpeed(){
+
+    public int getSpeed() {
         return speed;
     }
-    public int getHealth(){
+
+    public int getHealth() {
         return health;
     }
-    public int getExperience(){
+
+    public int getExperience() {
         return experience;
     }
-    public int getLevel(){
+
+    public int getLevel() {
         return level;
     }
 }
