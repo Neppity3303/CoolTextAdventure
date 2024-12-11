@@ -1,5 +1,5 @@
 package textadventure;
-
+//pretty sure I'm not using this properly but I am too afraid to delete it.
 // Base Chest Class
 public class Chest {
     private String chestType;
@@ -13,7 +13,5 @@ public class Chest {
     }
 
     // Method to simulate opening the chest
-    public String open() {
-        return "The chest has been opened!";
-    }
+    
 }

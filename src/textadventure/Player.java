@@ -26,7 +26,7 @@ public class Player {
         experience = 0;     // Set initial experience
     }
 
-    public void increaseAttack(int increaseAmount) {
+    public void increaseAttack(int increaseAmount) { //a method to easily add attack whether through an intem or level up
         this.attack += increaseAmount;
     }
 
@@ -56,7 +56,7 @@ public class Player {
         return 10 * level; // Adjust as needed for game balance
     }
 
-    public void displayStats() {
+    public void displayStats() { //displays player stats if decided
         System.out.println("Player: " + playerName);
         System.out.println("Health: " + health + "/" + maxHealth);
         System.out.println("Attack: " + attack);
@@ -66,14 +66,14 @@ public class Player {
         System.out.println("Experience: " + experience);
     }
 
-    public void takeDamage(int damage) {
-        this.health -= damage;
+    public void takeDamage(int damage) { //a method making decreasing hp easier
+        this.health -= damage; //this refers to the current instance. It doesn't really do anything for the player but it helps with the monster classes.
         if (this.health < 0) {
-            this.health = 0;
+            this.health = 0; //prevents health from being negative.
         }
     }
 
-    public void attack(Monster monster) {
+    public void attack(Monster monster) { //method to attack the selected monster
         Random crit = new Random();
         int damage;
 
@@ -98,7 +98,7 @@ public class Player {
         }
     }
 
-    public boolean isAlive() {
+    public boolean isAlive() { //checks if the player has more than 0 health
         if (this.health > 0) {
             return true;
         } else {
@@ -106,7 +106,7 @@ public class Player {
         }
     }
 
-    public int getDefense() {
+    public int getDefense() { //methods to call stats.
         return defense;
     }
 

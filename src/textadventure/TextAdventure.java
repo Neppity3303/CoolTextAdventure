@@ -61,6 +61,12 @@ public class TextAdventure {
                 combat(player, goblin); //call combat for player vs Goblin
                 player.displayStats();
                 break;
+            case "2"://chest
+                BronzeChest bronzeChest = new BronzeChest();//initialize bronze chest
+                Item droppedItem = bronzeChest.open(); //store the random item in a string
+                System.out.println("You find a chest in the chamber");
+                System.out.println("You open the chest and find a " + droppedItem);
+                inventory.addItem(droppedItem); //add the random item to the inventory in the appropriate slot
         }
         
             
@@ -150,10 +156,10 @@ public class TextAdventure {
     }
 
     public static void monsterHealthUpdate(Monster monster){
-        System.out.println("The " + monster.getName() + " has " + monster.getHealth() + " HP remaining.");
+        System.out.println("The " + monster.getName() + " has " + monster.getHealth() + " HP remaining."); //finds the monsters current health
     }
     public static void playerHealthUpdate(Player player){
-        System.out.println(player.getName() + " has " + player.getHealth() + " HP remaining.");
+        System.out.println(player.getName() + " has " + player.getHealth() + " HP remaining."); //finds your players health
     }
 }
     

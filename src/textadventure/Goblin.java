@@ -20,10 +20,10 @@ public class Goblin implements Monster {
         defense = 0;        // Set defense value
         critrate = 5;       // Set Critical Hit Rate
         speed = 5;          // Set speed value
-        experience = 15;     // Set initial experience
+        experience = 15;     // Set experience dropped
     }
     
-    public int getHealth(){
+    public int getHealth(){ //returns the stats for everything
         return health;
     }
     public int getAttack(){
@@ -42,7 +42,7 @@ public class Goblin implements Monster {
         return speed;
     }
     
-    public void attack(Player player) {
+    public void attack(Player player) { //the same attack method as a wolf. For more information check the wolf class
         Random crit = new Random();
         int damage;
 
@@ -67,13 +67,13 @@ public class Goblin implements Monster {
         }
     }
     
-    public void takeDamage(int damage){
+    public void takeDamage(int damage){ //takes damage. Same as all other living things
         this.health -= damage;
         if (this.health < 0){
             this.health = 0;
         }
     }
-    public boolean isAlive(){
+    public boolean isAlive(){ //checks if its alive
         if (this.health > 0){
             return true;
         } else {
