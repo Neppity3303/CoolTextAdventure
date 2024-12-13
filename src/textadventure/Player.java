@@ -79,18 +79,18 @@ public class Player {
 
         if (crit.nextInt(100) < critrate) {
             // Critical hit logic
-            damage = (this.attack * 2) - monster.getDefense(); // Double damage on crit
-            if (damage > 0) {
-                monster.takeDamage(damage);
+            damage = (this.attack * 2) - monster.getDefense(); // Double damage on crit. Also checks if attack is greater than defense
+            if (damage > 0) { 
+                monster.takeDamage(damage);//monster takes double damage
                 System.out.println(this.playerName + " attacks " + monster.getName() + " for " + damage + " damage (Critical hit)!");
             } else {
                 System.out.println(this.playerName + " attacks " + monster.getName() + " but it does no damage (Critical hit).");
             }
         } else {
             // Normal attack logic
-            damage = this.attack - monster.getDefense();
+            damage = this.attack - monster.getDefense(); //checks if damage is greater than defense
             if (damage > 0) {
-                monster.takeDamage(damage);
+                monster.takeDamage(damage);//monster takes damage
                 System.out.println(this.playerName + " attacks " + monster.getName() + " for " + damage + " damage.");
             } else {
                 System.out.println(this.playerName + " attacks " + monster.getName() + " but it does no damage.");

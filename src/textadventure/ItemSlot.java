@@ -1,5 +1,5 @@
 package textadventure;
-public enum ItemSlot {
+public enum ItemSlot { //possible slots to store items in
     WEAPON,
     HELMET,
     ARMOR,

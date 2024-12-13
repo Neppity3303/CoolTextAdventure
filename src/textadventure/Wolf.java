@@ -3,7 +3,7 @@ package textadventure;
 import java.util.Random;
 
 public class Wolf implements Monster {
-    private String playerName;
+    private String playerName; //yes I copy pasted this from the player class
     private int health;
     private int maxHealth;
     private int attack;
@@ -13,7 +13,7 @@ public class Wolf implements Monster {
     private int experience;
     
     public Wolf(String name) {
-        playerName = name;  // Set the player's name
+        playerName = name;  // Set the wolf's name
         health = 15;        // Set initial health
         maxHealth = 15;     // Set max health
         attack = 10;         // Set attack value

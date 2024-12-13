@@ -8,7 +8,7 @@ public class Item { //A super epic class that makes adding stats to items functi
     private int critrateBonus;
     private ItemSlot slot;
     
-    public Item(String name, int attackBonus, int defenseBonus, int healthBonus, int speedBonus, int critrateBonus, ItemSlot slot){
+    public Item(String name, int attackBonus, int defenseBonus, int healthBonus, int speedBonus, int critrateBonus, ItemSlot slot){ //adds the basis for making items
         this.name = name;
         this.attackBonus = attackBonus;
         this.defenseBonus = defenseBonus;
@@ -18,7 +18,7 @@ public class Item { //A super epic class that makes adding stats to items functi
         this.slot = slot;
     }
     
-    public String getName(){
+    public String getName(){ //get statements
         return name;
     }
     public int getAttackBonus(){
@@ -39,8 +39,8 @@ public class Item { //A super epic class that makes adding stats to items functi
     public ItemSlot getSlot(){
         return slot;
     }
-    @Override
-    public String toString(){
+    @Override //netbeans told me to
+    public String toString(){//displays item stats. might work maybe implemented, idk man I made this alone
         return name + " (ATK: " + attackBonus + ", DEF: " +defenseBonus + ", HP: " + healthBonus + ", SPD: " + speedBonus + ", CRT: " + critrateBonus + ")";
     }
 }
